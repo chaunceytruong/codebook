@@ -4,20 +4,23 @@ package com.david.algorithm;
 public class EquilbriumIndex {
     
     public int find(int[] values) {
+	if (values.length == 0) {
+	    return -1;
+	}
+	
 	// Calculate total sum
-	int totalSum = 0;
+	long totalSum = 0;
 	for (int value : values) {
 	    totalSum += value;
 	}
 	
-	int leftSum = 0;
+	long leftSum = 0;
 	for (int index = 0; index < values.length; index++) {
-	    int currentValue = values[index];
-	    int rightSum = totalSum - leftSum - currentValue;
+	    long rightSum = totalSum - leftSum - values[index];
 	    if (leftSum == rightSum) {
 		return index;
 	    }
-	    leftSum += currentValue;
+	    leftSum += values[index];
 	}
 	
 	// Unable to find equilibrium index
