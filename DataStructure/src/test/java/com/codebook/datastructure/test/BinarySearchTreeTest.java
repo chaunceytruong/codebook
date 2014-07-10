@@ -2,9 +2,10 @@ package com.codebook.datastructure.test;
 
 import static org.junit.Assert.assertEquals;
 
-import org.junit.Test;
-
 import com.codebook.datastructure.impl.BinarySearchTree;
+import com.codebook.datastructure.interfaces.BinaryTree.Traversal;
+
+import org.junit.Test;
 
 public class BinarySearchTreeTest {
     
@@ -32,6 +33,8 @@ public class BinarySearchTreeTest {
         for(int i = 1; i < NUMS; i+=2 ) {
             assertEquals("Find error2!", tree.find(new Integer(i)), null);
         }
+        
+        tree.printTraversal(Traversal.IN_ORDER);
     }
 
 }

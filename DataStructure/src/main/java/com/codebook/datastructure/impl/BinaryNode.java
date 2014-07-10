@@ -3,6 +3,7 @@ package com.codebook.datastructure.impl;
 /** 
  * BinaryNode is the basic node structure stored in unbalanced binary search trees
  */
+@SuppressWarnings("rawtypes")
 public class BinaryNode<T extends Comparable> {
     private T mData;	// The data in the node
     private BinaryNode<T> mLeft;	// Left child
@@ -40,5 +41,15 @@ public class BinaryNode<T extends Comparable> {
 
     public void setRight(BinaryNode<T> right) {
         this.mRight = right;
+    }
+
+    /* (non-Javadoc)
+     * @see java.lang.Object#toString()
+     */
+    @Override
+    public String toString() {
+	StringBuffer sb = new StringBuffer();
+	sb.append(mData);
+	return sb.toString();
     }
 }
