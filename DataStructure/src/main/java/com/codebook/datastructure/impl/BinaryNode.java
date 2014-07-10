@@ -3,42 +3,42 @@ package com.codebook.datastructure.impl;
 /** 
  * BinaryNode is the basic node structure stored in unbalanced binary search trees
  */
-public class BinaryNode {
-    private Comparable mData;	// The data in the node
-    private BinaryNode mLeft;	// Left child
-    private BinaryNode mRight;	// Right child
+public class BinaryNode<T extends Comparable> {
+    private T mData;	// The data in the node
+    private BinaryNode<T> mLeft;	// Left child
+    private BinaryNode<T> mRight;	// Right child
      
-    public BinaryNode(Comparable value) {
+    public BinaryNode(T value) {
         this(value, null, null);
     }
  
-    public BinaryNode(Comparable value, BinaryNode leftNode, BinaryNode rightNode) {
+    public BinaryNode(T value, BinaryNode<T> leftNode, BinaryNode<T> rightNode) {
 	this.mData = value;
 	this.mLeft = leftNode;
 	this.mRight = rightNode;
     }
     
-    public Comparable getData() {
+    public T getData() {
         return this.mData;
     }
 
-    public void setData(Comparable data) {
+    public void setData(T data) {
         this.mData = data;
     }
 
-    public BinaryNode getLeft() {
+    public BinaryNode<T> getLeft() {
         return this.mLeft;
     }
 
-    public void setLeft(BinaryNode left) {
+    public void setLeft(BinaryNode<T> left) {
         this.mLeft = left;
     }
 
-    public BinaryNode getRight() {
+    public BinaryNode<T> getRight() {
         return this.mRight;
     }
 
-    public void setRight(BinaryNode right) {
+    public void setRight(BinaryNode<T> right) {
         this.mRight = right;
     }
 }

@@ -11,12 +11,12 @@ package com.codebook.datastructure.interfaces;
  * void makeEmpty()     --> Remove all items
  * void printTree()     --> Print tree in sorted order
  */
-public interface BinaryTree {
-    void insert(Comparable value);
-    void remove(Comparable value);
-    Comparable find(Comparable value);
-    Comparable findMin();
-    Comparable findMax();
+public interface BinaryTree<T extends Comparable> {
+    void insert(T value);
+    void remove(T value);
+    T find(T value);
+    T findMin();
+    T findMax();
     boolean isEmpty();
     void makeEmpty();
     void printTree();
