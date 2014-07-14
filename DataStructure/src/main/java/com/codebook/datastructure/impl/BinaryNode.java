@@ -5,26 +5,26 @@ package com.codebook.datastructure.impl;
  */
 @SuppressWarnings("rawtypes")
 public class BinaryNode<T extends Comparable> {
-    private T mData;	// The data in the node
-    private BinaryNode<T> mLeft;	// Left child
-    private BinaryNode<T> mRight;	// Right child
+    private T mValue;
+    private BinaryNode<T> mLeft;
+    private BinaryNode<T> mRight;
      
     public BinaryNode(T value) {
         this(value, null, null);
     }
  
     public BinaryNode(T value, BinaryNode<T> leftNode, BinaryNode<T> rightNode) {
-	this.mData = value;
+	this.mValue = value;
 	this.mLeft = leftNode;
 	this.mRight = rightNode;
     }
     
-    public T getData() {
-        return this.mData;
+    public T getValue() {
+        return this.mValue;
     }
 
-    public void setData(T data) {
-        this.mData = data;
+    public void setValue(T data) {
+        this.mValue = data;
     }
 
     public BinaryNode<T> getLeft() {
@@ -42,6 +42,10 @@ public class BinaryNode<T extends Comparable> {
     public void setRight(BinaryNode<T> right) {
         this.mRight = right;
     }
+    
+    public boolean isLeaf() {
+	return this.mLeft == null && this.mRight == null;
+    }
 
     /* (non-Javadoc)
      * @see java.lang.Object#toString()
@@ -49,7 +53,7 @@ public class BinaryNode<T extends Comparable> {
     @Override
     public String toString() {
 	StringBuffer sb = new StringBuffer();
-	sb.append(mData);
+	sb.append(mValue);
 	return sb.toString();
     }
 }

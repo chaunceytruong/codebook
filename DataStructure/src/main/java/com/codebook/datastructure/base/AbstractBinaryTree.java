@@ -36,57 +36,16 @@ public abstract class AbstractBinaryTree<T extends Comparable> implements Binary
      * @param node the node that overallRoots the tree.
      * @return the new mOverallRoot.
      */
-    protected abstract BinaryNode<T> insert(T value, BinaryNode<T> node);
-    
-    @Override
-    public void remove(T value) {
-        mOverallRoot = remove(value, mOverallRoot);
+    protected BinaryNode<T> insert(T value, BinaryNode<T> node) {
+	if (node == null) {
+            node = new BinaryNode<T>(value, null, null);
+        } else if (node.getLeft() == null) {
+            node.setLeft(insert(value, node.getLeft()));
+        } else {
+            node.setRight(insert(value, node.getRight()));
+        }
+        return node;
     }
-    
-    /**
-     * Helper method to remove from a subtree.
-     * @param value the item to remove.
-     * @param node the node that overallRoots the tree.
-     * @return the new mOverallRoot.
-     */
-    protected abstract BinaryNode<T> remove(T value, BinaryNode<T> node);
- 
-    @Override
-    public T findMin() {
-        return dataAt(findMin(mOverallRoot));
-    }
-    
-    /**
-     * Helper method to find the smallest item in a subtree.
-     * @param node the node that overallRoots the tree.
-     * @return node containing the smallest item.
-     */
-    protected abstract BinaryNode<T> findMin(BinaryNode<T> node);
- 
-    @Override
-    public T findMax() {
-        return dataAt(findMax(mOverallRoot));
-    }
-    
-    /**
-     * Helper method to find the largest item in a subtree.
-     * @param node the node that overallRoots the tree.
-     * @return node containing the largest item.
-     */
-    protected abstract BinaryNode<T> findMax(BinaryNode<T> node);
- 
-    @Override
-    public T find(T value) {
-        return dataAt(find(value, mOverallRoot));
-    }
-    
-    /**
-     * Helper method to find an item in a subtree.
-     * @param value is item to search for.
-     * @param node the node that overallRoots the tree.
-     * @return node containing the matched item.
-     */
-    protected abstract BinaryNode<T> find(T value, BinaryNode<T> node);
  
     @Override
     public void makeEmpty() {
@@ -103,8 +62,8 @@ public abstract class AbstractBinaryTree<T extends Comparable> implements Binary
      * @param node the node.
      * @return the data field or null if node is null.
      */
-    private T dataAt(BinaryNode<T> node) {
-        return node == null ? null : node.getData();
+    protected T dataAt(BinaryNode<T> node) {
+        return node == null ? null : node.getValue();
     }
     
     @Override

@@ -18,10 +18,6 @@ import java.util.List;
 @SuppressWarnings("rawtypes")
 public interface BinaryTree<T extends Comparable> {
     void insert(T value);
-    void remove(T value);
-    T find(T value);
-    T findMin();
-    T findMax();
     boolean isEmpty();
     void makeEmpty();
     void printTraversal(Traversal traversal);
