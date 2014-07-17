@@ -36,5 +36,4 @@ public class BinarySearchTreeTest {
         
         tree.printTraversal(Traversal.IN_ORDER);
     }
-
 }
