@@ -6,7 +6,7 @@ package com.codebook.datastructure.impl;
  * @param <T>
  *            Node type
  */
-public class Operator<T extends Comparable<Character>> extends BinaryNode<T> {
+public class OperatorNode<T extends Comparable<Character>> extends BinaryNode<T> {
 
     /**
      * Constructor accepts a single character value with no child nodes.
@@ -14,7 +14,7 @@ public class Operator<T extends Comparable<Character>> extends BinaryNode<T> {
      * @param value
      *            Operator value. Valid values include: +,-,*,/,^
      */
-    public Operator(T value) {
+    public OperatorNode(T value) {
 	super(value);
     }
 
@@ -34,7 +34,7 @@ public class Operator<T extends Comparable<Character>> extends BinaryNode<T> {
      * @throws IllegalArgumentException
      *             Children of Operator must be of type Operand. @see Operand
      */
-    public Operator(T value, BinaryNode<T> leftNode, BinaryNode<T> rightNode) {
+    public OperatorNode(T value, BinaryNode<T> leftNode, BinaryNode<T> rightNode) {
 	super(value, leftNode, rightNode);
 
 	if (leftNode == null || rightNode == null) {
@@ -42,7 +42,7 @@ public class Operator<T extends Comparable<Character>> extends BinaryNode<T> {
 		    "Operator must have exactly two non-null children.");
 	}
 
-	if (!(leftNode instanceof Operand) || !(rightNode instanceof Operand)) {
+	if (!(leftNode instanceof OperandNode) || !(rightNode instanceof OperandNode)) {
 	    throw new IllegalArgumentException(
 		    "Children of Operator must be of type Operand.");
 	}
