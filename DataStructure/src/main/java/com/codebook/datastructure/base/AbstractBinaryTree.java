@@ -6,19 +6,11 @@ import com.codebook.datastructure.interfaces.BinaryTree;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Common base class implementation that can be used for a Binary Tree (please
- * note that this is not a Binary Search Tree, @see
- * com.code.datastructure.impl.BinarySearchTree)
- * 
- * @param <T>
- *            Node type for the Binary Tree
- */
 @SuppressWarnings("rawtypes")
 public abstract class AbstractBinaryTree<T extends Comparable> implements
 	BinaryTree<T> {
     /**
-     * The tree's overall root.
+     * The tree overall root.
      */
     protected BinaryNode<T> mOverallRoot;
 
@@ -29,11 +21,6 @@ public abstract class AbstractBinaryTree<T extends Comparable> implements
 	mOverallRoot = null;
     }
 
-    /**
-     * Get the overall root node of the binary tree.
-     * 
-     * @return mOverallRoot Top-most node in tree
-     */
     @Override
     public BinaryNode<T> getOverallRoot() {
 	return mOverallRoot;
@@ -45,14 +32,12 @@ public abstract class AbstractBinaryTree<T extends Comparable> implements
     }
 
     /**
-     * Helper method to insert value into a subtree. All sub-classes should
-     * override this method accordingly.
+     * Helper method to insert value into a subtree.
      * 
      * @param value
-     *            the value to insert.
+     *            the item to insert.
      * @param node
-     *            the starting node e.g. this is typically the node that
-     *            overallRoots the tree.
+     *            the node that overallRoots the tree.
      * @return the new mOverallRoot.
      */
     protected BinaryNode<T> insert(T value, BinaryNode<T> node) {
@@ -78,7 +63,9 @@ public abstract class AbstractBinaryTree<T extends Comparable> implements
 
     /**
      * Helper method to get data field.
-     * 
+     *
+     * @param node
+     *            the node. Helper method to get data field.
      * @param node
      *            the node.
      * @return the data field or null if node is null.
