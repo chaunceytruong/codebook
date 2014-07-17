@@ -34,7 +34,7 @@ public class BinarySearchTree<T extends Comparable> extends AbstractBinaryTree<T
      * @return the new mOverallRoot.
      */
     @SuppressWarnings("unchecked")
-    protected BinaryNode<T> remove(T value, BinaryNode<T> node) {
+    private BinaryNode<T> remove(T value, BinaryNode<T> node) {
         if(node == null) {
             // Item not found; do nothing
             return node;                                       
@@ -62,7 +62,7 @@ public class BinarySearchTree<T extends Comparable> extends AbstractBinaryTree<T
      * @param node the node that overallRoots the tree.
      * @return node containing the smallest item.
      */
-    protected BinaryNode<T> findMin(BinaryNode<T> node) {
+    private BinaryNode<T> findMin(BinaryNode<T> node) {
         if(node == null) {
             return null;
         } else if(node.getLeft() == null) {
@@ -100,7 +100,7 @@ public class BinarySearchTree<T extends Comparable> extends AbstractBinaryTree<T
      * @return node containing the matched item.
      */
     @SuppressWarnings("unchecked")
-    protected BinaryNode<T> find(T value, BinaryNode<T> node) {
+    private BinaryNode<T> find(T value, BinaryNode<T> node) {
         if(node == null) {
             return null;
         } if(value.compareTo(node.getValue()) < 0) {

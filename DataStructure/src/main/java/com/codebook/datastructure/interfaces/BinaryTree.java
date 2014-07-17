@@ -17,10 +17,10 @@ import java.util.List;
  */
 @SuppressWarnings("rawtypes")
 public interface BinaryTree<T extends Comparable> {
-    void insert(T value);
-    boolean isEmpty();
-    void makeEmpty();
-    void printTraversal(Traversal traversal);
+	public BinaryNode<T> getOverallRoot();
+    public void insert(T value);
+    public boolean isEmpty();
+    public void makeEmpty();
     
     /**
      * IN-ORDER TRAVERSAL
@@ -44,6 +44,8 @@ public interface BinaryTree<T extends Comparable> {
     public List<BinaryNode<T>> postOrderList(BinaryNode<T> overallRoot);
     
     public enum Traversal {
-	IN_ORDER, PRE_ORDER, POST_ORDER
+    	IN_ORDER, 
+    	PRE_ORDER, 
+    	POST_ORDER
     }
 }

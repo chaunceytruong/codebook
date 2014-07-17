@@ -21,6 +21,7 @@ public abstract class AbstractBinaryTree<T extends Comparable> implements Binary
         mOverallRoot = null;
     }
  
+    @Override
     public BinaryNode<T> getOverallRoot() {
         return mOverallRoot;
     }
@@ -37,14 +38,14 @@ public abstract class AbstractBinaryTree<T extends Comparable> implements Binary
      * @return the new mOverallRoot.
      */
     protected BinaryNode<T> insert(T value, BinaryNode<T> node) {
-	if (node == null) {
-            node = new BinaryNode<T>(value, null, null);
-        } else if (node.getLeft() == null) {
-            node.setLeft(insert(value, node.getLeft()));
-        } else {
-            node.setRight(insert(value, node.getRight()));
-        }
-        return node;
+		if (node == null) {
+	            node = new BinaryNode<T>(value, null, null);
+	        } else if (node.getLeft() == null) {
+	            node.setLeft(insert(value, node.getLeft()));
+	        } else {
+	            node.setRight(insert(value, node.getRight()));
+	        }
+	        return node;
     }
  
     @Override
@@ -58,35 +59,12 @@ public abstract class AbstractBinaryTree<T extends Comparable> implements Binary
     }
     
     /**
-     * Private helper method to get data field.
+     * Helper method to get data field.
      * @param node the node.
      * @return the data field or null if node is null.
      */
     protected T dataAt(BinaryNode<T> node) {
         return node == null ? null : node.getValue();
-    }
-    
-    @Override
-    public void printTraversal(Traversal traversal) {
-	System.out.println(String.format("%s traversal\n~~~", traversal));
-        if(isEmpty()) {
-            System.out.println("Empty tree");
-        } else {
-            List<BinaryNode<T>> traversalList;
-            switch (traversal) {
-            	case PRE_ORDER:
-            	    traversalList = preOrderList(mOverallRoot);
-            	    break;
-            	case POST_ORDER:
-            	    traversalList = postOrderList(mOverallRoot);
-            	    break;
-            	case IN_ORDER:
-            	default:
-            	    traversalList = inOrderList(mOverallRoot);
-            }
-            System.out.println(traversalList);
-        }
-        System.out.println("~~~");
     }
 
     /**
@@ -95,9 +73,9 @@ public abstract class AbstractBinaryTree<T extends Comparable> implements Binary
      */
     @Override
     public List<BinaryNode<T>> inOrderList(BinaryNode<T> overallRoot) {
-	List<BinaryNode<T>> inOrderTraversalList = new ArrayList<BinaryNode<T>>();
-	inOrderList(overallRoot, inOrderTraversalList);
-	return inOrderTraversalList;
+		List<BinaryNode<T>> inOrderTraversalList = new ArrayList<BinaryNode<T>>();
+		inOrderList(overallRoot, inOrderTraversalList);
+		return inOrderTraversalList;
     }
     
     private void inOrderList(BinaryNode<T> root, List<BinaryNode<T>> result) {
@@ -114,17 +92,17 @@ public abstract class AbstractBinaryTree<T extends Comparable> implements Binary
      */
     @Override
     public List<BinaryNode<T>> preOrderList(BinaryNode<T> overallRoot) {
-	List<BinaryNode<T>> preOrderTraversalList = new ArrayList<BinaryNode<T>>();
-	preOrderList(overallRoot, preOrderTraversalList);
-	return preOrderTraversalList;
+		List<BinaryNode<T>> preOrderTraversalList = new ArrayList<BinaryNode<T>>();
+		preOrderList(overallRoot, preOrderTraversalList);
+		return preOrderTraversalList;
     }
     
     private void preOrderList(BinaryNode<T> root, List<BinaryNode<T>> result) {
-	if(root != null) {
-	    result.add(root);
-	    preOrderList(root.getLeft(), result);
-	    preOrderList(root.getRight(), result);
-	}
+		if(root != null) {
+		    result.add(root);
+		    preOrderList(root.getLeft(), result);
+		    preOrderList(root.getRight(), result);
+		}
     }
 
     /**
@@ -133,16 +111,16 @@ public abstract class AbstractBinaryTree<T extends Comparable> implements Binary
      */
     @Override
     public List<BinaryNode<T>> postOrderList(BinaryNode<T> overallRoot) {
-	List<BinaryNode<T>> postOrderTraversalList = new ArrayList<BinaryNode<T>>();
-	postOrderList(overallRoot, postOrderTraversalList);
-	return postOrderTraversalList;
+		List<BinaryNode<T>> postOrderTraversalList = new ArrayList<BinaryNode<T>>();
+		postOrderList(overallRoot, postOrderTraversalList);
+		return postOrderTraversalList;
     }
     
     private void postOrderList(BinaryNode<T> root, List<BinaryNode<T>> result) {
-	if(root != null) {
-	    preOrderList(root.getLeft(), result);
-	    preOrderList(root.getRight(), result);
-	    result.add(root);
-	}
+		if(root != null) {
+		    preOrderList(root.getLeft(), result);
+		    preOrderList(root.getRight(), result);
+		    result.add(root);
+		}
     }
 }
