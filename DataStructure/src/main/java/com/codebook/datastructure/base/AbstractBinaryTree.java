@@ -34,6 +34,7 @@ public abstract class AbstractBinaryTree<T extends Comparable> implements
      * 
      * @return mOverallRoot Top-most node in tree
      */
+    @Override
     public BinaryNode<T> getOverallRoot() {
 	return mOverallRoot;
     }
@@ -84,29 +85,6 @@ public abstract class AbstractBinaryTree<T extends Comparable> implements
      */
     protected T dataAt(BinaryNode<T> node) {
 	return node == null ? null : node.getValue();
-    }
-
-    @Override
-    public void printTraversal(Traversal traversal) {
-	System.out.println(String.format("%s traversal\n~~~", traversal));
-	if (isEmpty()) {
-	    System.out.println("Empty tree");
-	} else {
-	    List<BinaryNode<T>> traversalList;
-	    switch (traversal) {
-	    case PRE_ORDER:
-		traversalList = preOrderList(mOverallRoot);
-		break;
-	    case POST_ORDER:
-		traversalList = postOrderList(mOverallRoot);
-		break;
-	    case IN_ORDER:
-	    default:
-		traversalList = inOrderList(mOverallRoot);
-	    }
-	    System.out.println(traversalList);
-	}
-	System.out.println("~~~");
     }
 
     /**
