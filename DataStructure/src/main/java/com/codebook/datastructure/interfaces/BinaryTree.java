@@ -5,47 +5,62 @@ import com.codebook.datastructure.impl.BinaryNode;
 import java.util.List;
 
 /**
- *******************PUBLIC OPERATIONS*********************
- * void insert(x)	--> Insert x
- * void remove(x)       --> Remove x
- * Comparable find(x)   --> Return item that matches x
- * Comparable findMin() --> Return smallest item
- * Comparable findMax() --> Return largest item
- * boolean isEmpty()    --> Return true if empty; else false
- * void makeEmpty()     --> Remove all items
- * void printTree()     --> Print tree in sorted order
+ * Interface definition for a Binary Tree.
  */
 @SuppressWarnings("rawtypes")
 public interface BinaryTree<T extends Comparable> {
-	public BinaryNode<T> getOverallRoot();
-    public void insert(T value);
-    public boolean isEmpty();
-    public void makeEmpty();
-    
     /**
-     * IN-ORDER TRAVERSAL
-     * @return a list containing the sequence of values obtained from an in-order traversal
-     * of your binary tree
+     * Get the top-most node in the Binary Tree.
+     * 
+     * @return Overall root of the Binary Tree
+     */
+    public BinaryNode<T> getOverallRoot();
+
+    /**
+     * Insert specified value into the Binary Tree.
+     * 
+     * @param value
+     *            The value to be inserted @see Comparable
+     */
+    public void insert(T value);
+
+    /**
+     * Checks to see if the Binary Tree has any nodes.
+     * 
+     * @return true if there are one or more nodes, false otherwise
+     */
+    public boolean isEmpty();
+
+    /**
+     * Logically make the tree empty (no nodes).
+     */
+    public void makeEmpty();
+
+    /**
+     * Get a list of nodes from an in-order Binary Tree traversal.
+     * 
+     * @return a list containing the sequence of values obtained from an
+     *         in-order traversal of your binary tree
      */
     public List<BinaryNode<T>> inOrderList(BinaryNode<T> overallRoot);
-    
+
     /**
-     * PRE-ORDER TRAVERSAL
-     * @return a list containing the sequence of values obtained from a pre-order traversal
-     * of your binary tree
+     * Get a list of nodes from a pre-order Binary Tree traversal.
+     * 
+     * @return a list containing the sequence of values obtained from a
+     *         pre-order traversal of your binary tree
      */
     public List<BinaryNode<T>> preOrderList(BinaryNode<T> overallRoot);
-    
+
     /**
-     * POST-ORDER TRAVERSAL
-     * @return a list containing the sequence of values obtained from a post-order traversal
-     * of your binary tree
+     * Get a list of nodes from a post-order Binary Tree traversal.
+     * 
+     * @return a list containing the sequence of values obtained from a
+     *         post-order traversal of your binary tree
      */
     public List<BinaryNode<T>> postOrderList(BinaryNode<T> overallRoot);
-    
+
     public enum Traversal {
-    	IN_ORDER, 
-    	PRE_ORDER, 
-    	POST_ORDER
+	BREADTH_FIRST, DEPTH_FIRST, IN_ORDER, PRE_ORDER, POST_ORDER
     }
 }

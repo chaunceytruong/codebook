@@ -6,6 +6,13 @@ import com.codebook.datastructure.interfaces.BinaryTree;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Common base class for a Binary Tree (not to be confused with a Binary Search
+ * Tree @see BinarySearchTree)
+ * 
+ * @param <T>
+ *            Node type
+ */
 @SuppressWarnings("rawtypes")
 public abstract class AbstractBinaryTree<T extends Comparable> implements
 	BinaryTree<T> {
@@ -32,7 +39,7 @@ public abstract class AbstractBinaryTree<T extends Comparable> implements
     }
 
     /**
-     * Helper method to insert value into a subtree.
+     * Insert value into a sub-tree.
      * 
      * @param value
      *            the item to insert.
@@ -62,12 +69,10 @@ public abstract class AbstractBinaryTree<T extends Comparable> implements
     }
 
     /**
-     * Helper method to get data field.
+     * Get data field associated with the specified node.
      *
      * @param node
-     *            the node. Helper method to get data field.
-     * @param node
-     *            the node.
+     *            the node
      * @return the data field or null if node is null.
      */
     protected T dataAt(BinaryNode<T> node) {
@@ -75,9 +80,7 @@ public abstract class AbstractBinaryTree<T extends Comparable> implements
     }
 
     /**
-     * TODO(oud): Add Javadoc
-     * 
-     * @see com.codebook.datastructure.interfaces.BinaryTree#inOrderList(com.codebook.datastructure.impl.BinaryNode)
+     * @see BinaryTree#inOrderList(BinaryNode)
      */
     @Override
     public List<BinaryNode<T>> inOrderList(BinaryNode<T> overallRoot) {
@@ -95,11 +98,6 @@ public abstract class AbstractBinaryTree<T extends Comparable> implements
 	}
     }
 
-    /**
-     * TODO(oud): Add Javadoc
-     * 
-     * @see com.codebook.datastructure.interfaces.BinaryTree#preOrderList(com.codebook.datastructure.impl.BinaryNode)
-     */
     @Override
     public List<BinaryNode<T>> preOrderList(BinaryNode<T> overallRoot) {
 	List<BinaryNode<T>> preOrderTraversalList = new ArrayList<
@@ -116,11 +114,6 @@ public abstract class AbstractBinaryTree<T extends Comparable> implements
 	}
     }
 
-    /**
-     * TODO(oud): Add Javadoc
-     * 
-     * @see com.codebook.datastructure.interfaces.BinaryTree#postOrderList(com.codebook.datastructure.impl.BinaryNode)
-     */
     @Override
     public List<BinaryNode<T>> postOrderList(BinaryNode<T> overallRoot) {
 	List<BinaryNode<T>> postOrderTraversalList = new ArrayList<
