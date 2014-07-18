@@ -2,28 +2,22 @@ package com.codebook.algorithm.test;
 
 import static org.junit.Assert.assertEquals;
 
-import com.codebook.algorithm.EquilbriumIndex;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.codebook.algorithm.EquilbriumIndex;
+
 public class EquilibriumIndexText {
     EquilbriumIndex mEquilbriumIndex;
 
-    /**
-     * @throws java.lang.Exception
-     */
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
 	mEquilbriumIndex = new EquilbriumIndex();
     }
 
-    /**
-     * @throws java.lang.Exception
-     */
     @After
-    public void tearDown() throws Exception {
+    public void tearDown() {
 	mEquilbriumIndex = null;
     }
 

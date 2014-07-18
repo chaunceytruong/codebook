@@ -1,10 +1,10 @@
 package com.codebook.datastructure.base;
 
-import com.codebook.datastructure.impl.BinaryNode;
-import com.codebook.datastructure.interfaces.BinaryTree;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import com.codebook.datastructure.impl.BinaryNode;
+import com.codebook.datastructure.interfaces.BinaryTree;
 
 /**
  * Common base class for a Binary Tree (not to be confused with a Binary Search
@@ -69,6 +69,24 @@ public abstract class AbstractBinaryTree<T extends Comparable> implements
     }
 
     /**
+     * NUMBER OF NODES (SIZE)
+     * 
+     * @return the total number of nodes in the tree
+     */
+    @Override
+    public int size() {
+	return size(mOverallRoot);
+    }
+
+    private int size(BinaryNode root) {
+	if (root == null) {
+	    return 0;
+	} else {
+	    return 1 + size(root.getLeft()) + size(root.getRight());
+	}
+    }
+
+    /**
      * Get data field associated with the specified node.
      *
      * @param node
@@ -84,8 +102,7 @@ public abstract class AbstractBinaryTree<T extends Comparable> implements
      */
     @Override
     public List<BinaryNode<T>> inOrderList(BinaryNode<T> overallRoot) {
-	List<BinaryNode<T>> inOrderTraversalList = new ArrayList<
-		BinaryNode<T>>();
+	List<BinaryNode<T>> inOrderTraversalList = new ArrayList<BinaryNode<T>>();
 	inOrderList(overallRoot, inOrderTraversalList);
 	return inOrderTraversalList;
     }
@@ -100,8 +117,7 @@ public abstract class AbstractBinaryTree<T extends Comparable> implements
 
     @Override
     public List<BinaryNode<T>> preOrderList(BinaryNode<T> overallRoot) {
-	List<BinaryNode<T>> preOrderTraversalList = new ArrayList<
-		BinaryNode<T>>();
+	List<BinaryNode<T>> preOrderTraversalList = new ArrayList<BinaryNode<T>>();
 	preOrderList(overallRoot, preOrderTraversalList);
 	return preOrderTraversalList;
     }
@@ -116,8 +132,7 @@ public abstract class AbstractBinaryTree<T extends Comparable> implements
 
     @Override
     public List<BinaryNode<T>> postOrderList(BinaryNode<T> overallRoot) {
-	List<BinaryNode<T>> postOrderTraversalList = new ArrayList<
-		BinaryNode<T>>();
+	List<BinaryNode<T>> postOrderTraversalList = new ArrayList<BinaryNode<T>>();
 	postOrderList(overallRoot, postOrderTraversalList);
 	return postOrderTraversalList;
     }

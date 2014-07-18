@@ -1,8 +1,8 @@
 package com.codebook.datastructure.interfaces;
 
-import com.codebook.datastructure.impl.BinaryNode;
-
 import java.util.List;
+
+import com.codebook.datastructure.impl.BinaryNode;
 
 /**
  * Interface definition for a Binary Tree.
@@ -35,6 +35,13 @@ public interface BinaryTree<T extends Comparable> {
      * Logically make the tree empty (no nodes).
      */
     public void makeEmpty();
+
+    /**
+     * Get the numbers of nodes in the tree.
+     * 
+     * @return The number of nodes in the tree
+     */
+    public int size();
 
     /**
      * Get a list of nodes from an in-order Binary Tree traversal.
