@@ -1,6 +1,8 @@
 package com.codebook.algorithm;
 
+import java.util.ArrayList;
 import java.util.EmptyStackException;
+import java.util.List;
 import java.util.Stack;
 
 /**
@@ -8,6 +10,89 @@ import java.util.Stack;
  *
  */
 public class TowerOfHanoi {
+    private List<TowerOfHanoi.Tower> mTowers;
+
+    /**
+     * Default constructors instantiates a TowerOfHanoi setup with 3 towers and
+     * 3 disks on the first tower.
+     */
+    public TowerOfHanoi() {
+	this(3, 3);
+    }
+
+    /**
+     * Constructors accepts two values that specify the number of towers that
+     * will be used and the number of disks to insert onto the first tower.
+     * 
+     * @param numTowers
+     *            Number of towers
+     * @param numDisks
+     *            Number of disks
+     * @throws IllegalArgumentException
+     *             Cannot instantiate TowerOfHanoi with 0 or less towers/disks
+     */
+    public TowerOfHanoi(int numTowers, int numDisks) {
+	if (numDisks > numTowers) {
+	    throw new IllegalArgumentException(
+		    "Number of disks cannot exceed the number of towers. You can however have more towers than disks.");
+	}
+
+	if (numTowers <= 0 || numDisks <= 0) {
+	    throw new IllegalArgumentException(
+		    "Cannot instantiate TowerOfHanoi with 0 or less towers/disks.");
+	}
+
+	// Instantiate towers and insert disks
+	setTowers(numTowers, numDisks);
+    }
+
+    /**
+     * Get the tower at the specified index.
+     * 
+     * @param index
+     *            Index to retrieve tower
+     * @return Tower at the specified index
+     * @throws IndexOutOfBoundsException
+     *             If there is no tower at that index
+     */
+    public Tower getTower(int index) {
+	if (index >= mTowers.size()) {
+	    throw new IndexOutOfBoundsException(
+		    "Cannot retrieve a tower from that index.");
+	}
+	return mTowers.get(index);
+    }
+
+    /**
+     * Reset TowerOfHanoi to the specified number of towers and insert disks
+     * onto first tower.
+     * 
+     * @param numTowers
+     *            Number of towers
+     * @param numDisks
+     *            Number of disks
+     * @throws IllegalArgumentException
+     *             Cannot instantiate TowerOfHanoi with 0 or less towers/disks
+     */
+    public void setTowers(int numTowers, int numDisks) {
+	if (numTowers <= 0 || numDisks <= 0) {
+	    throw new IllegalArgumentException(
+		    "Cannot instantiate TowerOfHanoi with 0 or less towers/disks.");
+	}
+
+	mTowers = new ArrayList<TowerOfHanoi.Tower>();
+
+	Tower tower = new Tower(0);
+	for (int disk = numDisks; disk > 0; disk--) {
+	    tower.insertDisk(disk);
+	}
+	mTowers.add(tower);
+
+	for (int index = 1; index < numTowers; index++) {
+	    tower = new Tower(index);
+	    mTowers.add(tower);
+	}
+    }
 
     /**
      * Move the top-most disk from one tower to another specified tower.
@@ -15,7 +100,7 @@ public class TowerOfHanoi {
      * @param targetTower
      *            Tower to move the top-most disk to
      */
-    public static void moveTop(final Tower originTower, final Tower targetTower) {
+    public void moveTop(final Tower originTower, final Tower targetTower) {
 	int topDisk = originTower.getTopDisk();
 	targetTower.insertDisk(topDisk);
 	System.out.println(String.format(
@@ -23,7 +108,7 @@ public class TowerOfHanoi {
 		originTower.index(), targetTower.index()));
     }
 
-    public static void moveDisks(final int numDisks, final Tower originTower,
+    public void moveDisks(final int numDisks, final Tower originTower,
 	    Tower destinationTower, Tower bufferTower) {
 	// Base case
 	if (numDisks <= 0) {
