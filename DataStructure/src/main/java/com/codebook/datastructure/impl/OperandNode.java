@@ -8,28 +8,28 @@ package com.codebook.datastructure.impl;
  */
 public class OperandNode<T extends Comparable<Number>> extends BinaryNode<T> {
 
-    /**
-     * Constructor accepts a single numeric value with no child nodes.
-     * 
-     * @param value
-     *            Operand value. Valid values are bounded by the real domain.
-     */
-    public OperandNode(T value) {
-	super(value);
-    }
+	/**
+	 * Constructor accepts a single numeric value with no child nodes.
+	 * 
+	 * @param value
+	 *            Operand value. Valid values are bounded by the real domain.
+	 */
+	public OperandNode(T value) {
+		super(value);
+	}
 
-    /**
-     * Constructor accepts a single numeric value with two child nodes.
-     * 
-     * @param value
-     *            Operand value. Valid values are bounded by the real domain.
-     * @param leftNode
-     *            Left child node
-     * @param rightNode
-     *            Right child node
-     */
-    public OperandNode(T value, BinaryNode<T> leftNode, BinaryNode<T> rightNode) {
-	super(value, leftNode, rightNode);
-    }
+	/**
+	 * Constructor accepts a single numeric value with two child nodes.
+	 * 
+	 * @param value
+	 *            Operand value. Valid values are bounded by the real domain.
+	 * @param leftNode
+	 *            Left child node
+	 * @param rightNode
+	 *            Right child node
+	 */
+	public OperandNode(T value, BinaryNode<T> leftNode, BinaryNode<T> rightNode) {
+		super(value, leftNode, rightNode);
+	}
 
 }
