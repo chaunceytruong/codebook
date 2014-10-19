@@ -9,23 +9,22 @@ import org.junit.Test;
 import com.codebook.algorithm.EquilbriumIndex;
 
 public class EquilibriumIndexText {
-	EquilbriumIndex mEquilbriumIndex;
 
 	@Before
 	public void setUp() {
-		mEquilbriumIndex = new EquilbriumIndex();
+		
 	}
 
 	@After
 	public void tearDown() {
-		mEquilbriumIndex = null;
+		
 	}
 
 	@Test
 	public void testSimple() {
 		int[] values = new int[] { 1, 2, 3, 2, 1 };
 		int expectedindex = 2;
-		int actualIndex = mEquilbriumIndex.find(values);
+		int actualIndex = EquilbriumIndex.find(values);
 		assertEquals(expectedindex, actualIndex);
 	}
 
@@ -33,7 +32,7 @@ public class EquilibriumIndexText {
 	public void testExtremelyLargeNumbers() {
 		int[] values = new int[] { 1082132608, 0, 1082132608 };
 		int expectedindex = 1;
-		int actualIndex = mEquilbriumIndex.find(values);
+		int actualIndex = EquilbriumIndex.find(values);
 		assertEquals(expectedindex, actualIndex);
 	}
 
@@ -41,7 +40,7 @@ public class EquilibriumIndexText {
 	public void testOverflowEquilibriumIndexDoesNotExist() {
 		int[] values = new int[] { 0, 2147483647, 2147483647 };
 		int expectedindex = -1;
-		int actualIndex = mEquilbriumIndex.find(values);
+		int actualIndex = EquilbriumIndex.find(values);
 		assertEquals(expectedindex, actualIndex);
 	}
 
@@ -49,7 +48,7 @@ public class EquilibriumIndexText {
 	public void testOverflowEquilibriumIndexExists() {
 		int[] values = new int[] { 0, 2147483647, 2147483647, 2147483647 };
 		int expectedindex = 2;
-		int actualIndex = mEquilbriumIndex.find(values);
+		int actualIndex = EquilbriumIndex.find(values);
 		assertEquals(expectedindex, actualIndex);
 	}
 
@@ -57,7 +56,7 @@ public class EquilibriumIndexText {
 	public void testOneLarge() {
 		int[] values = new int[] { 2, -1, -2, 1, 50 };
 		int expectedindex = 4;
-		int actualIndex = mEquilbriumIndex.find(values);
+		int actualIndex = EquilbriumIndex.find(values);
 		assertEquals(expectedindex, actualIndex);
 	}
 
@@ -65,7 +64,7 @@ public class EquilibriumIndexText {
 	public void testSumZero() {
 		int[] values = new int[] { 2, -1, -2, 1 };
 		int expectedindex = 2;
-		int actualIndex = mEquilbriumIndex.find(values);
+		int actualIndex = EquilbriumIndex.find(values);
 		assertEquals(expectedindex, actualIndex);
 	}
 
@@ -73,7 +72,7 @@ public class EquilibriumIndexText {
 	public void testSingle() {
 		int[] values = new int[] { 0 };
 		int expectedindex = 0;
-		int actualIndex = mEquilbriumIndex.find(values);
+		int actualIndex = EquilbriumIndex.find(values);
 		assertEquals(expectedindex, actualIndex);
 	}
 
@@ -81,7 +80,7 @@ public class EquilibriumIndexText {
 	public void testEmpty() {
 		int[] values = new int[] {};
 		int expectedindex = -1;
-		int actualIndex = mEquilbriumIndex.find(values);
+		int actualIndex = EquilbriumIndex.find(values);
 		assertEquals(expectedindex, actualIndex);
 	}
 
@@ -89,32 +88,32 @@ public class EquilibriumIndexText {
 	public void testCominationsOfTwo() {
 		int[] values = new int[] { 0, -1 };
 		int expectedindex = 1;
-		int actualIndex = mEquilbriumIndex.find(values);
+		int actualIndex = EquilbriumIndex.find(values);
 		assertEquals(expectedindex, actualIndex);
 
 		values = new int[] { 0, 1 };
 		expectedindex = 1;
-		actualIndex = mEquilbriumIndex.find(values);
+		actualIndex = EquilbriumIndex.find(values);
 		assertEquals(expectedindex, actualIndex);
 
 		values = new int[] { 1, 0 };
 		expectedindex = 0;
-		actualIndex = mEquilbriumIndex.find(values);
+		actualIndex = EquilbriumIndex.find(values);
 		assertEquals(expectedindex, actualIndex);
 
 		values = new int[] { 1, -1 };
 		expectedindex = -1;
-		actualIndex = mEquilbriumIndex.find(values);
+		actualIndex = EquilbriumIndex.find(values);
 		assertEquals(expectedindex, actualIndex);
 
 		values = new int[] { -1, 0 };
 		expectedindex = 0;
-		actualIndex = mEquilbriumIndex.find(values);
+		actualIndex = EquilbriumIndex.find(values);
 		assertEquals(expectedindex, actualIndex);
 
 		values = new int[] { -1, 1 };
 		expectedindex = -1;
-		actualIndex = mEquilbriumIndex.find(values);
+		actualIndex = EquilbriumIndex.find(values);
 		assertEquals(expectedindex, actualIndex);
 	}
 
@@ -123,7 +122,7 @@ public class EquilibriumIndexText {
 		int[] values = new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, -9, -8, -7,
 				-6, -5, -4, -3, -2, -1 };
 		int expectedindex = 0;
-		int actualIndex = mEquilbriumIndex.find(values);
+		int actualIndex = EquilbriumIndex.find(values);
 		assertEquals(expectedindex, actualIndex);
 	}
 

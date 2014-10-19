@@ -2,7 +2,7 @@ package com.codebook.algorithm;
 
 public class EquilbriumIndex {
 
-	public int find(int[] values) {
+	public static int find(int[] values) {
 		if (values.length == 0) {
 			return -1;
 		}
