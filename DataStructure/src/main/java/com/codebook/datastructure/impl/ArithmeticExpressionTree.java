@@ -4,13 +4,9 @@ import com.codebook.datastructure.base.AbstractBinaryTree;
 
 /**
  * Implements an Arithmetic Expression Tree.
- * 
- * @param <T>
- *            Node type
  */
 @SuppressWarnings("rawtypes")
-public class ArithmeticExpressionTree<T extends Comparable> extends
-		AbstractBinaryTree<T> {
+public class ArithmeticExpressionTree extends AbstractBinaryTree {
 
 	/**
 	 * Evaluate the expression and return its value. All the work is done in the
@@ -27,11 +23,10 @@ public class ArithmeticExpressionTree<T extends Comparable> extends
 	 * traversal, in which the processing is doing the actual arithmetic. For
 	 * isLeaf nodes, it is simply the value of the node.
 	 * 
-	 * @param node
-	 *            Node to perform the next calculation on
+	 * @param node  Node to perform the next calculation on
 	 * @return The result after calculating the node.
 	 */
-	private double evaluate(BinaryNode<T> node) {
+	private double evaluate(BinaryNode node) {
 		// Value to be returned
 		double result;
 
