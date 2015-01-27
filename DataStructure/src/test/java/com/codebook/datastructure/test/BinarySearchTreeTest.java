@@ -1,6 +1,7 @@
 package com.codebook.datastructure.test;
 
 import com.codebook.datastructure.impl.BinarySearchTree;
+import com.codebook.datastructure.utils.BinarySearchTreeUtils;
 
 import org.junit.After;
 import org.junit.Before;
@@ -9,6 +10,7 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+
 
 public class BinarySearchTreeTest {
 	BinarySearchTree mBinarySearchTree;
@@ -41,6 +43,7 @@ public class BinarySearchTreeTest {
 		int expectedSize = 1;
 		int actualSize = mBinarySearchTree.size();
 		assertEquals(expectedSize, actualSize);
+        BinarySearchTreeUtils.print(mBinarySearchTree.getOverallRoot());
 	}
 
 	@Test
@@ -51,6 +54,7 @@ public class BinarySearchTreeTest {
 		int expectedMax = 1082132608;
 		Comparable actualMax = mBinarySearchTree.findMax();
 		assertEquals(expectedMax, actualMax);
+        BinarySearchTreeUtils.print(mBinarySearchTree.getOverallRoot());
 	}
 
 	@Test
@@ -64,7 +68,7 @@ public class BinarySearchTreeTest {
 		}
 
 		for (int i = 1; i < NUMS; i += 2) {
-			tree.remove(new Integer(i));
+			tree.remove(i);
 		}
 
 		assertEquals("FindMin error!", tree.findMin(), 2);
@@ -75,7 +79,7 @@ public class BinarySearchTreeTest {
 		}
 
 		for (int i = 1; i < NUMS; i += 2) {
-			assertEquals("Find error2!", tree.find(new Integer(i)), null);
+			assertEquals("Find error2!", tree.find(i), null);
 		}
-	}
+    }
 }

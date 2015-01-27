@@ -66,7 +66,4 @@ public interface BinaryTree {
 	 */
 	public List<BinaryNode> getPostOrderList(BinaryNode overallRoot);
 
-	public enum Traversal {
-		BREADTH_FIRST, DEPTH_FIRST, IN_ORDER, PRE_ORDER, POST_ORDER
-	}
 }

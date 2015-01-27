@@ -70,4 +70,14 @@ public class MergeSortTest {
                 new int[] { -4, -2, 1, 2, 6, 8 },
                 arrayWithNegatives);
     }
+
+    @Test
+    public void testArrayWithAllDuplicates() {
+        int[] arrayWithAllDuplicates = TestCaseData.Sort.newArrayWithAllDuplicates();
+        SortUtils.mergeSort(arrayWithAllDuplicates);
+
+        Assert.assertArrayEquals(
+                TestCaseData.Sort.newArrayWithAllDuplicates(),
+                arrayWithAllDuplicates);
+    }
 }
