@@ -38,7 +38,8 @@ public abstract class AbstractBinaryTree implements BinaryTree {
 	 * 
 	 * @param value the item to insert.
 	 * @param node  the node that overallRoots the tree.
-	 * @return      the new mOverallRoot.
+	 *
+     * @return The new mOverallRoot.
 	 */
 	protected BinaryNode insert(Comparable value, BinaryNode node) {
 		if (node == null) {

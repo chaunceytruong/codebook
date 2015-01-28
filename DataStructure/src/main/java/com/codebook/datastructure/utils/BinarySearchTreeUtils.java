@@ -14,6 +14,7 @@ public class BinarySearchTreeUtils {
      * Construct a Binary Tree from its pre-order traversal
      *
      * @param preOrderTraversal Pre-order traversal list from which to construct the binary tree.
+     *
      * @return BinaryNode Root of re-constructed tree
      */
     public static BinaryNode constructFromPreOrderTraversal(List<Comparable> preOrderTraversal) {
@@ -25,7 +26,6 @@ public class BinarySearchTreeUtils {
 
     private static BinaryNode constructFromPreOrderTraversal(List<Comparable> preOrderTraversal,
                                                              int start, int end) {
-
         // Base case, finished re-constructing tree
         if (start >= end) {
             return null;
