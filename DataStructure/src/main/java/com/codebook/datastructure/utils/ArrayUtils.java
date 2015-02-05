@@ -1,7 +1,11 @@
 package com.codebook.datastructure.utils;
 
 
+import com.sun.javafx.beans.annotations.NonNull;
+
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 
@@ -99,5 +103,60 @@ public class ArrayUtils {
             }
         }
         return false;
+    }
+
+    public static int longestConsecutiveSequence(@NonNull int[] values) {
+        if (values.length == 0) {
+            return 0;
+        }
+
+        int currentLength = 1;
+        int maxLength = currentLength;
+
+        for (int i = 0; i < values.length - 1; i++) {
+            int previous = values[i];
+            int current = values[i + 1];
+            if (current > previous) {
+                currentLength++;
+            } else {
+                currentLength = 1;
+            }
+            maxLength = Math.max(currentLength, maxLength);
+            System.out.println(String.format(
+                    "current: %s previous: %s currentLength: %s maxLength: %s",
+                    current, previous, currentLength, maxLength));
+        }
+
+        return maxLength;
+    }
+
+    public static int longestConsecutiveSequence(@NonNull Iterator<Integer> values) {
+        if (!values.hasNext()) {
+            return 0;
+        }
+
+        int currentLength = 1;
+        int maxLength = currentLength;
+
+        while (values.hasNext()) {
+            int previous = values.next();
+            int current = values.next();
+            if (current > previous) {
+                currentLength++;
+            } else {
+                currentLength = 1;
+            }
+            maxLength = Math.max(currentLength, maxLength);
+            System.out.println(String.format(
+                    "current: %s previous: %s currentLength: %s maxLength: %s",
+                    current, previous, currentLength, maxLength));
+        }
+        return maxLength;
+    }
+
+    public static void main(String[] args) {
+        System.out.println("LCS: " + longestConsecutiveSequence(new int[]{ 1, 7, 6, 9, 10, 4 }));
+        System.out.println("LCS: " + longestConsecutiveSequence(Arrays.asList(1, 7, 6, 9, 10, 4).iterator()));
+
     }
 }
