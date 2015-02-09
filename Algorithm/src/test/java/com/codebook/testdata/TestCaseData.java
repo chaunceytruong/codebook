@@ -3,7 +3,7 @@ package com.codebook.testdata;
 
 public class TestCaseData {
 
-    public static class Sort {
+    public static class Arrays {
 
         public static int[] newEmptyArray() {
             return new int[0];

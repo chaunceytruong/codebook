@@ -23,37 +23,37 @@ public class MergeSortTest {
 
     @Test
     public void testSortEmptyArray() {
-        int[] emptyArray = TestCaseData.Sort.newEmptyArray();
+        int[] emptyArray = TestCaseData.Arrays.newEmptyArray();
         SortUtils.mergeSort(emptyArray);
 
         Assert.assertArrayEquals(
-                TestCaseData.Sort.newEmptyArray(),
+                TestCaseData.Arrays.newEmptyArray(),
                 emptyArray);
     }
 
     @Test
     public void testAlreadySortedArray() {
-        int[] alreadySortedArray = TestCaseData.Sort.newSortedArray();
+        int[] alreadySortedArray = TestCaseData.Arrays.newSortedArray();
         SortUtils.mergeSort(alreadySortedArray);
 
         Assert.assertArrayEquals(
-                TestCaseData.Sort.newSortedArray(),
+                TestCaseData.Arrays.newSortedArray(),
                 alreadySortedArray);
     }
 
     @Test
     public void testReverseSortedArray() {
-        int[] reverseSortedArray = TestCaseData.Sort.newReverseSortedArray();
+        int[] reverseSortedArray = TestCaseData.Arrays.newReverseSortedArray();
         SortUtils.mergeSort(reverseSortedArray);
 
         Assert.assertArrayEquals(
-                TestCaseData.Sort.newSortedArray(),
+                TestCaseData.Arrays.newSortedArray(),
                 reverseSortedArray);
     }
 
     @Test
     public void testUnsortedArrayWithDuplicates() {
-        int[] unsortedArrayWithDuplicates = TestCaseData.Sort.newUnsortedArrayWithDuplicates();
+        int[] unsortedArrayWithDuplicates = TestCaseData.Arrays.newUnsortedArrayWithDuplicates();
         SortUtils.mergeSort(unsortedArrayWithDuplicates);
 
         Assert.assertArrayEquals(
@@ -63,7 +63,7 @@ public class MergeSortTest {
 
     @Test
     public void testUnsortedArrayWithNegatives() {
-        int[] arrayWithNegatives = TestCaseData.Sort.newUnsortedArrayWithNegatives();
+        int[] arrayWithNegatives = TestCaseData.Arrays.newUnsortedArrayWithNegatives();
         SortUtils.mergeSort(arrayWithNegatives);
 
         Assert.assertArrayEquals(
@@ -73,11 +73,11 @@ public class MergeSortTest {
 
     @Test
     public void testArrayWithAllDuplicates() {
-        int[] arrayWithAllDuplicates = TestCaseData.Sort.newArrayWithAllDuplicates();
+        int[] arrayWithAllDuplicates = TestCaseData.Arrays.newArrayWithAllDuplicates();
         SortUtils.mergeSort(arrayWithAllDuplicates);
 
         Assert.assertArrayEquals(
-                TestCaseData.Sort.newArrayWithAllDuplicates(),
+                TestCaseData.Arrays.newArrayWithAllDuplicates(),
                 arrayWithAllDuplicates);
     }
 }

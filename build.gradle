@@ -3,7 +3,7 @@ subprojects {
     apply plugin: 'eclipse'
 
     repositories {
-       mavenCentral()
+        mavenCentral()
     }
 
     dependencies {
