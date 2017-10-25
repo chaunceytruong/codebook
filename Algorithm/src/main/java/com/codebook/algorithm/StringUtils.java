@@ -75,13 +75,26 @@ public class StringUtils {
         }
     }
 
-    public static void main(String[] args) {
-        System.out.println(removeDuplicates("abababab"));
-        Scanner in = new Scanner(System.in);
-        int t = in.nextInt();
-        for (int a0 = 0; a0 < t; a0++) {
-            String expression = in.next();
-            System.out.println( (isBalanced(expression)) ? "YES" : "NO" );
+    public static boolean ransomNote(String magazineContent, String ransomContent) {
+        String magazine[] = magazineContent.split(" ");
+        String ransom[] = ransomContent.split(" ");
+        HashMap<String, Integer> wordCounts = new HashMap<String, Integer>();
+        for (String magazineWord : magazine) {
+            if (!wordCounts.containsKey(magazineWord)) {
+                wordCounts.put(magazineWord, 1);
+            } else {
+                int count = wordCounts.get(magazineWord) + 1;
+                wordCounts.put(magazineWord, count);
+            }
         }
+        for (String ransomWord : ransom) {
+            if (!wordCounts.containsKey(ransomWord) || wordCounts.get(ransomWord) == 0) {
+                return false;
+            } else {
+                int count = wordCounts.get(ransomWord) - 1;
+                wordCounts.put(ransomWord, count);
+            }
+        }
+        return true;
     }
 }

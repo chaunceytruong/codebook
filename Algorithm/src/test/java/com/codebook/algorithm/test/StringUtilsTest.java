@@ -21,4 +21,14 @@ public class StringUtilsTest {
     public void testEmptyString() {
         Assert.assertTrue(StringUtils.isBalanced(""));
     }
+
+    @Test
+    public void testRansomNote() {
+        Assert.assertTrue(StringUtils.ransomNote("give me one grand today night", "give one grand today"));
+    }
+
+    @Test
+    public void testRemoveDuplicates() {
+        Assert.assertEquals("ab", StringUtils.removeDuplicates("abababab"));
+    }
 }
