@@ -1,8 +1,7 @@
 package com.codebook.algorithm;
 
 
-import com.sun.javafx.beans.annotations.NonNull;
-
+import com.sun.istack.internal.NotNull;
 
 public class Zillow {
 
@@ -26,7 +25,7 @@ public class Zillow {
      *
      * @throws NumberFormatException if the string argument cannot be converted
      */
-    public static long stringToLong(@NonNull String s) throws NumberFormatException {
+    public static long stringToLong(@NotNull String s) throws NumberFormatException {
         return stringToLong(s, 10);
     }
 
@@ -41,7 +40,7 @@ public class Zillow {
      *
      * @throws NumberFormatException if the string argument cannot be converted
      */
-    public static long stringToLong(@NonNull String s, int radix) throws NumberFormatException {
+    public static long stringToLong(@NotNull String s, int radix) throws NumberFormatException {
         if (s == null || s.isEmpty()) {
             throw new NumberFormatException("String argument cannot be null or empty");
         }
@@ -103,7 +102,7 @@ public class Zillow {
          * Initialize TrinaryNode with specified value and no children nodes.
          * @param value
          */
-        public TrinaryNode(@NonNull Comparable value) {
+        public TrinaryNode(@NotNull Comparable value) {
             this(value, null, null, null);
         }
 

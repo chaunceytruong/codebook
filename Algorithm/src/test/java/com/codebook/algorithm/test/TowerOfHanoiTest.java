@@ -70,4 +70,10 @@ public class TowerOfHanoiTest {
 		// Destination tower should have all 20 disks
 		assertEquals(20, destinationTower.size());
 	}
+
+	@Test (expected = IllegalArgumentException.class)
+	public void testMoreDisksThanTowers() {
+		mTowerOfHanoi = new TowerOfHanoi(20, 21);
+	}
+
 }
