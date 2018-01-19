@@ -3,10 +3,7 @@ package com.codebook.algorithm;
 
 import com.sun.istack.internal.NotNull;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
-import java.util.Stack;
+import java.util.*;
 
 
 public class StringUtils {
@@ -34,6 +31,54 @@ public class StringUtils {
 
         return sb.toString();
     }
+
+    public static void main(String[] args) {
+        System.out.println(Arrays.toString(balancedOrNot(new String[] { "<>", "<>><" }, new int[] { 2, 1})));
+    }
+
+    /*
+     * Complete the function below.
+     */
+    public static int[] balancedOrNot(String[] expressions, int[] maxReplacements) {
+        int length = expressions.length;
+        int[] expressionsBalanced = new int[expressions.length];
+        for (int i = 0; i < length; i++) {
+            String expression = expressions[i];
+            int maxReplaceForExpression = maxReplacements[i];
+            expressionsBalanced[i] = isStringBalancedWithReplacements(expression, maxReplaceForExpression);
+        }
+        return expressionsBalanced;
+    }
+
+    /**
+     * Check if the specified string is balanced up to max replacements.
+     *
+     * @param expression string expression.
+     * @param maxReplacement number of replacements allowed.
+     * @return true if balanced, false otherwise.
+     */
+    private static int isStringBalancedWithReplacements(String expression, int maxReplacement) {
+        Stack<Character> stack = new Stack<Character>();
+        for (int i = 0; i < expression.length(); i++) {
+            char ch = expression.charAt(i);
+            if (ch == '<') {
+                stack.push(ch);
+            } else if (ch == '>') {
+                if (stack.empty()) {
+                    if (maxReplacement <= 0) {
+                        return 0;
+                    } else {
+                        maxReplacement -= 1;
+                    }
+                } else {
+                    stack.pop();
+                }
+            }
+        }
+        boolean isBalanced = stack.empty() && maxReplacement >= 0;
+        return isBalanced ? 1 : 0;
+    }
+
 
     /**
      * Stacks: Balanced Brackets

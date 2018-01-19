@@ -1,4 +1,4 @@
-package com.codebook.algorithm.test;
+package com.codebook.algorithm;
 
 import static org.junit.Assert.assertEquals;
 
