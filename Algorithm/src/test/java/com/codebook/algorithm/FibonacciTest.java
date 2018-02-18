@@ -35,6 +35,15 @@ public class FibonacciTest {
     }
 
     @Test
+    public void testDynamicSpaceOptimized() {
+        for (int n = 0; n < inputValues.length; n++) {
+            int actual = mFibonacci.dynamicSpaceOptimized(inputValues[n]);
+            int expected = expectedOutput[n];
+            Assert.assertEquals(expected, actual);
+        }
+    }
+
+    @Test
     public void testSpeed() {
         long startTime = System.currentTimeMillis();
         for (int i = 0; i < 40; i++) {

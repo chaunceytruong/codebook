@@ -4,6 +4,8 @@ package com.codebook.algorithm;
 import com.sun.istack.internal.NotNull;
 
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 public class StringUtils {
@@ -33,7 +35,8 @@ public class StringUtils {
     }
 
     public static void main(String[] args) {
-        System.out.println(Arrays.toString(balancedOrNot(new String[] { "<>", "<>><" }, new int[] { 2, 1})));
+//        System.out.println(Arrays.toString(balancedOrNot(new String[] { "<>", "<>><" }, new int[] { 2, 1})));
+        printOutComments();
     }
 
     /*
@@ -141,5 +144,74 @@ public class StringUtils {
             }
         }
         return true;
+    }
+
+    public static void printOutComments() {
+        String commentedCode = "/* This \\s Common multi-line comment style.\n" +
+                " ****/\n" +
+                "more_code(); \n" +
+                "/*\n" +
+                " * Another common multi-line comment style.\n" +
+                " */\n" +
+                "end_code();//Hello";
+
+        String[] split = commentedCode.split("(?:/\\*(?:[^*]|(?:\\*+[^*/]))*\\*+/)");
+        for (String s : split) {
+            commentedCode = commentedCode.replace(s, "").trim();
+        }
+        System.out.print(commentedCode);
+//
+//        boolean isMultiLine = false;
+//        char lastChar = Character.MIN_VALUE;
+//        char[] chars = commentedCode.toCharArray();
+//        for (char c : chars) {
+//            if (lastChar == '/' && c == '*') {
+//                isMultiLine = true;
+//            }
+//        }
+
+    }
+
+
+    /**
+     * Check if the specified substring is contained within the original string.
+     *
+     * @param substring
+     * @param originalString
+     * @return true if substring, false otherwise.
+     */
+    public static boolean isSubstring(String substring, String originalString) {
+        if (substring == null || originalString == null) return false;
+        if (substring.length() > originalString.length()) return false;
+        if (substring.length() == 0) return true;
+
+        for (int i = 0; i < originalString.length(); i++) {
+            if (i + substring.length() > originalString.length()) {
+                return false;
+            }
+
+            int k = i;
+            for (int j = 0; j < substring.length(); j++) {
+                if (substring.charAt(j) == originalString.charAt(k)) {
+                    if (j == substring.length() - 1) {
+                        return true;
+                    }
+                    k++;
+                } else {
+                    break;
+                }
+            }
+        }
+
+        return false;
+//        while(index < orginalString.length) {
+//            if (orginalString.charAt(idex) == substring.charAt(0)) {
+//                if (substring.length == 1) return true;
+//                for (int i = 1; i < substring.length; i++){
+//                    index2 = index + i;
+//                    if
+//                }
+//            }
+//        }
     }
 }
