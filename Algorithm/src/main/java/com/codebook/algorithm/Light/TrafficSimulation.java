@@ -27,7 +27,7 @@ public class TrafficSimulation {
     private static void mainTrafficLoop() {
         Light initialLight = NorthSouthLight;
         initialLight.green(intersection);
-        logTime(NorthSouthLight);
+        logMsgWithTime(NorthSouthLight.toString());
         while (isRunning) {
             if (vehicles.peek() == null) {
                 continue;
@@ -80,13 +80,13 @@ public class TrafficSimulation {
 
     private static void flushBackedUpEastWestVehicles() {
         while (backedUpEastWestVehicles.peek() != null) {
-            System.out.println("     " + backedUpEastWestVehicles.remove() + " drives thru.");
+            logMsgWithoutTime(backedUpEastWestVehicles.remove() + " drives thru.");
         }
     }
 
     private static void flushBackedUpNorthSouthVehicles() {
         while (backedUpNorthSouthVehicles.peek() != null) {
-            System.out.println("     " + backedUpNorthSouthVehicles.remove() + " drives thru.");
+            logMsgWithoutTime(backedUpNorthSouthVehicles.remove() + " drives thru.");
         }
     }
 
@@ -94,9 +94,9 @@ public class TrafficSimulation {
         @Override
         public void run() {
             EastWestLight.red(intersection);
-            logTime(EastWestLight);
+            logMsgWithTime(EastWestLight.toString());
             NorthSouthLight.green(intersection);
-            logTime(NorthSouthLight);
+            logMsgWithTime(NorthSouthLight.toString());
             flushBackedUpNorthSouthVehicles();
         }
     }
@@ -105,7 +105,7 @@ public class TrafficSimulation {
         @Override
         public void run() {
             NorthSouthLight.yellow(intersection);
-            logTime(NorthSouthLight);
+            logMsgWithTime(NorthSouthLight.toString());
             flushBackedUpNorthSouthVehicles();
         }
     }
@@ -114,7 +114,7 @@ public class TrafficSimulation {
         @Override
         public void run() {
             NorthSouthLight.red(intersection);
-            logTime(NorthSouthLight);
+            logMsgWithTime(NorthSouthLight.toString());
         }
     }
 
@@ -122,7 +122,7 @@ public class TrafficSimulation {
         @Override
         public void run() {
             EastWestLight.green(intersection);
-            logTime(EastWestLight);
+            logMsgWithTime(EastWestLight.toString());
             flushBackedUpEastWestVehicles();
         }
     }
@@ -131,16 +131,20 @@ public class TrafficSimulation {
         @Override
         public void run() {
             EastWestLight.yellow(intersection);
-            logTime(EastWestLight);
+            logMsgWithTime(EastWestLight.toString());
             flushBackedUpEastWestVehicles();
         }
     }
 
-    private static void logTime(Light light) {
+    private static void logMsgWithoutTime(String msg) {
+        System.out.println("     " + msg);
+    }
+
+    private static void logMsgWithTime(String msg) {
         int currentTime = ((int) ((System.currentTimeMillis() - startTime) / 1000));
         int min = currentTime / 60;
         int sec = currentTime % 60;
-        System.out.println(min + ":" + ((sec < 10) ? ("0" + sec) : sec) + " " + light.toString());
+        System.out.println(min + ":" + ((sec < 10) ? ("0" + sec) : sec) + " " + msg);
     }
 
     private static class AddVehicleToIntersection implements Runnable {
@@ -153,10 +157,7 @@ public class TrafficSimulation {
 
         @Override
         public void run() {
-            int currentTime = ((int) ((System.currentTimeMillis() - startTime) / 1000));
-            int min = currentTime / 60;
-            int sec = currentTime % 60;
-            System.out.println(min + ":" + ((sec < 10) ? ("0" + sec) : sec) + String.format(" %s appears at intersection.", vehicle.toString()));
+            logMsgWithTime(String.format("%s appears at intersection.", vehicle.toString()));
 
             final Light intersectionLight = intersection.getState();
             if (intersectionLight instanceof NorthSouth && vehicle.direction == Direction.NorthSouth) {
