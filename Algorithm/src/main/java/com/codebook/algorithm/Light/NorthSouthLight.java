@@ -1,6 +1,6 @@
 package com.codebook.algorithm.Light;
 
-public class NorthSouth implements Light {
+public class NorthSouthLight implements Light {
 
     Color currentColor;
 
@@ -29,6 +29,6 @@ public class NorthSouth implements Light {
 
     @Override
     public String toString() {
-        return NorthSouth.class.getSimpleName() + " " + currentColor;
+        return NorthSouthLight.class.getSimpleName() + " " + currentColor;
     }
 }

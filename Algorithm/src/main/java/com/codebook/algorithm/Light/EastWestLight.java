@@ -1,6 +1,6 @@
 package com.codebook.algorithm.Light;
 
-public class EastWest implements Light {
+public class EastWestLight implements Light {
 
     Color currentColor;
 
@@ -29,6 +29,6 @@ public class EastWest implements Light {
 
     @Override
     public String toString() {
-        return EastWest.class.getSimpleName() + " " + currentColor;
+        return EastWestLight.class.getSimpleName() + " " + currentColor;
     }
 }

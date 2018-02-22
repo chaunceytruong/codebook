@@ -1,7 +1,7 @@
 package com.codebook.datastructure.utils;
 
 
-import com.sun.javafx.beans.annotations.NonNull;
+import com.sun.istack.internal.NotNull;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -105,7 +105,7 @@ public class ArrayUtils {
         return false;
     }
 
-    public static int longestConsecutiveSequence(@NonNull int[] values) {
+    public static int longestConsecutiveSequence(@NotNull int[] values) {
         if (values.length == 0) {
             return 0;
         }
@@ -130,7 +130,7 @@ public class ArrayUtils {
         return maxLength;
     }
 
-    public static int longestConsecutiveSequence(@NonNull Iterator<Integer> values) {
+    public static int longestConsecutiveSequence(@NotNull Iterator<Integer> values) {
         if (!values.hasNext()) {
             return 0;
         }

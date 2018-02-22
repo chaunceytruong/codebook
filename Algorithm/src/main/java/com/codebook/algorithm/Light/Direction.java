@@ -1,6 +1,8 @@
 package com.codebook.algorithm.Light;
 
 public enum Direction {
-    NorthSouth,
-    EastWest
+    North,
+    South,
+    East,
+    West
 }
