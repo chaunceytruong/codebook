@@ -1,4 +1,4 @@
-package com.codebook.algorithm.Light;
+package com.polarr.traffic;
 
 public class NorthSouthLight implements Light {
 

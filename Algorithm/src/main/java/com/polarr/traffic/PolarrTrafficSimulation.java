@@ -1,4 +1,4 @@
-package com.codebook.algorithm.Light;
+package com.polarr.traffic;
 
 import com.sun.istack.internal.NotNull;
 
@@ -109,9 +109,9 @@ public class PolarrTrafficSimulation implements TrafficSimulation {
             final Light intersectionLight = intersection.getState();
             Color intersectionLightColor = intersectionLight.getColor();
 
-            if (intersectionLight instanceof com.codebook.algorithm.Light.NorthSouthLight && (current.direction == Direction.North || current.direction == Direction.South)) {
+            if (intersectionLight instanceof com.polarr.traffic.NorthSouthLight && (current.direction == Direction.North || current.direction == Direction.South)) {
                 logMsgWithoutTime(current + " drives thru.");
-            } else if (intersectionLight instanceof com.codebook.algorithm.Light.EastWestLight && (current.direction == Direction.East || current.direction == Direction.West)) {
+            } else if (intersectionLight instanceof com.polarr.traffic.EastWestLight && (current.direction == Direction.East || current.direction == Direction.West)) {
                 logMsgWithoutTime(current + " drives thru.");
             } else {
                 /**
@@ -122,7 +122,7 @@ public class PolarrTrafficSimulation implements TrafficSimulation {
                  * afterwards, the eastWest light becomes red and the northSouth light stays green, until
                  * another car appears in the east/west direction.
                  */
-                if (intersectionLight instanceof com.codebook.algorithm.Light.NorthSouthLight && (current.direction == Direction.East || current.direction == Direction.West) && intersectionLightColor == Color.GREEN) {
+                if (intersectionLight instanceof com.polarr.traffic.NorthSouthLight && (current.direction == Direction.East || current.direction == Direction.West) && intersectionLightColor == Color.GREEN) {
                     service.schedule(new NorthSouthLightTurnsYellow(), 5, TimeUnit.SECONDS);
                     service.schedule(new NorthSouthLightTurnsRed(), 8, TimeUnit.SECONDS);
                     service.schedule(new EastWestLightTurnsGreen(), 8, TimeUnit.SECONDS);
@@ -249,14 +249,14 @@ public class PolarrTrafficSimulation implements TrafficSimulation {
             logMsgWithTime(String.format("%s appears at intersection.", vehicle.toString()));
 
             final Light intersectionLight = intersection.getState();
-            if (intersectionLight instanceof com.codebook.algorithm.Light.NorthSouthLight && (vehicle.direction == Direction.North || vehicle.direction == Direction.South)) {
+            if (intersectionLight instanceof com.polarr.traffic.NorthSouthLight && (vehicle.direction == Direction.North || vehicle.direction == Direction.South)) {
                 logMsgWithoutTime(vehicle + " drives thru.");
-            } else if (intersectionLight instanceof com.codebook.algorithm.Light.EastWestLight && (vehicle.direction == Direction.East || vehicle.direction == Direction.West)) {
+            } else if (intersectionLight instanceof com.polarr.traffic.EastWestLight && (vehicle.direction == Direction.East || vehicle.direction == Direction.West)) {
                 logMsgWithoutTime(vehicle + " drives thru.");
-            } else if (intersectionLight instanceof com.codebook.algorithm.Light.NorthSouthLight && (vehicle.direction == Direction.East || vehicle.direction == Direction.West)) {
+            } else if (intersectionLight instanceof com.polarr.traffic.NorthSouthLight && (vehicle.direction == Direction.East || vehicle.direction == Direction.West)) {
                 backedUpEastWestVehicles.add(vehicle);
                 vehicles.add(vehicle);
-            } else if (intersectionLight instanceof com.codebook.algorithm.Light.EastWestLight && (vehicle.direction == Direction.North || vehicle.direction == Direction.South)) {
+            } else if (intersectionLight instanceof com.polarr.traffic.EastWestLight && (vehicle.direction == Direction.North || vehicle.direction == Direction.South)) {
                 backedUpNorthSouthVehicles.add(vehicle);
                 vehicles.add(vehicle);
             }
