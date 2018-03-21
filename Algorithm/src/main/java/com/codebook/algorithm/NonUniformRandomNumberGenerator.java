@@ -5,7 +5,7 @@ import java.util.Random;
 
 public class NonUniformRandomNumberGenerator {
 
-    int generate(double[] probabilities) throws InvalidProbabilityRangeException {
+    int generate(double[] probabilities, int[] numbers) throws InvalidProbabilityRangeException {
         if (probabilities == null || probabilities.length == 0) {
             throw new InvalidProbabilityRangeException("Probabilities can't be null!");
         }
@@ -17,14 +17,17 @@ public class NonUniformRandomNumberGenerator {
             throw new InvalidProbabilityRangeException("Probabilities don't add up to 1.0!");
         }
         int uniformRoll = new Random().nextInt(100);
-        double lowerRange = probabilities[0] * 100;
-        double midRange = lowerRange + probabilities[1] * 100;
-        if (uniformRoll >= 0 && uniformRoll < lowerRange) {
-            return 6;
-        } else if (uniformRoll >= lowerRange && uniformRoll < midRange) {
-            return 1;
+        System.out.println("Uniform roll " + uniformRoll);
+
+        int range = 0;
+        for (int i = 0; i < probabilities.length; i++) {
+            range += probabilities[i] * 100;
+            if (uniformRoll < range) {
+                return numbers[i];
+            }
         }
-        return 2;
+        // Should never reach this point.
+        return -1;
     }
 
     class InvalidProbabilityRangeException extends Exception {
@@ -34,7 +37,8 @@ public class NonUniformRandomNumberGenerator {
     }
 
     public static void main(String[] args) throws InvalidProbabilityRangeException {
-        double[] probs = { .25, .5, .25 };
-        System.out.println(new NonUniformRandomNumberGenerator().generate(probs));
+        double[] probs = { 0, 0, .5, .5 };
+        int[] numbers = { 6, 7, 1, 2 };
+        System.out.println(new NonUniformRandomNumberGenerator().generate(probs, numbers));
     }
 }

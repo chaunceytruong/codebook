@@ -2,6 +2,7 @@ package com.codebook.datastructure;
 
 import com.codebook.datastructure.impl.BinaryNode;
 
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
@@ -10,8 +11,7 @@ import java.util.List;
 import java.util.Random;
 import java.lang.*;
 
-public class Tree
-{
+public class Tree {
     private Node root;
 
     // create and empty tree?
@@ -28,6 +28,12 @@ public class Tree
         private Node parent;
         private List<Node> children;
 
+        /**
+         * Print the tree starting at this node.
+         *
+         * @param out OutputStream to write to.
+         * @throws IOException if failed for some reason to write to OutputStream.
+         */
         public void printTree(OutputStreamWriter out) throws IOException {
             Node right = children.get(1);
             Node left = children.get(0);
@@ -40,6 +46,12 @@ public class Tree
             }
         }
 
+        /**
+         * Helper method to print the node value to the OutputStreamWriter.
+         *
+         * @param out OutputStreamWriter
+         * @throws IOException if failed for some reason to write to OutputStreamWriter.
+         */
         private void printNodeValue(OutputStreamWriter out) throws IOException {
             if (data == null) {
                 out.write("<null>");
@@ -50,7 +62,14 @@ public class Tree
             out.flush();
         }
 
-        // use string and not stringbuffer on purpose as we need to change the indent at each recursion
+        /**
+         * Print tree with indents and characters to specify node relationships.
+         *
+         * @param out     OutputStreamWriter
+         * @param isRight true if right node, false otherwise
+         * @param indent  string indent for node
+         * @throws IOException if failed for some reason to write to OutputStreamWriter.
+         */
         private void printTree(OutputStreamWriter out, boolean isRight, String indent) throws IOException {
             Node right = children.get(1);
             Node left = children.get(0);
@@ -75,85 +94,55 @@ public class Tree
      *  and each node can have 0-2 children. For simplicity, let's assume the data-type T is just an integer.
      */
 
-    public void construct5depthTree() {
-        // create a list of random numbers
+    /**
+     * Construct a tree of depth 5 (stops immediately after reaching depth 5 (will not create a full tree).
+     */
+    public void constructDepth5Tree() {
         Random rand = new Random();
-        while (insert(rand.nextInt()) < 5);
-
-//        insert(10);
-//        insert(3);
-//        insert(11);
-//        insert(5);
-//        insert(4);
-//        insert(12);
-//        insert(9);
+        while (insert(rand.nextInt(100)) < 5) ;
     }
 
-    void print2DUtil(Node root, int space)
-    {
-        // Base case
-        if (root == null) {
-            for (int i = 0; i < space; i++) {
-                System.out.print(" ");
-            }
-            System.out.print("NULL");
-            return;
-        }
-
-        // Increase distance between levels
-        space += 10;
-
-        // Process right child first
-        print2DUtil(root.children.get(1), space);
-
-        // Print current node after space
-        // count
-        System.out.println();
-        for (int i = 10; i < space; i++)
-            System.out.print(" ");
-        System.out.printf("%d\n", root.data);
-
-        // Process left child
-        print2DUtil(root.children.get(0), space);
-    }
-
-    // create a new node
-    private Node createNode(int newData, Node parent){
+    /**
+     * Create a new node and attach it to specified parent.
+     *
+     * @param data   new node data
+     * @param parent parent node
+     * @return newly created node
+     */
+    private Node createNode(int data, Node parent) {
         Node newNode = new Node();
-        newNode.data = newData;
+        newNode.data = data;
         newNode.parent = parent;
         newNode.children = new ArrayList<Node>();
         newNode.children.add(0, null);
         newNode.children.add(1, null);
-        return  newNode;
+        return newNode;
     }
 
     /**
-     * insert
-     * @param data
+     * Insert node into tree.
+     *
+     * @param data node data.
      * @return the depth of the inserted node
      */
     private int insert(int data) {
-        // empty tree
         if (root == null) {
             root = createNode(data, null);
             System.out.println("root insert: " + data);
-            return 0;
+            return 1;
         }
         Node parent = null;
         Node current = root;
-        int depth = 0;
+        int depth = 1;
 
         while (current != null) {
             parent = current;
             if (data <= current.data) {
                 current = current.children.get(0);
-                depth += 1;
-            }
-            else {
+            } else {
                 current = current.children.get(1);
-                depth += 1;
             }
+            depth += 1;
         }
         if (data <= parent.data) {
             parent.children.remove(0);
@@ -178,18 +167,73 @@ public class Tree
         }
     }
 
-    public void printPreorder(){
+    public void printPreorder() {
         System.out.print("preorder: ");
         printPreorderHelper(root);
         System.out.println();
     }
 
-    private void printPreorderHelper(Node node){
+    private void printPreorderHelper(Node node) {
         if (node == null)
             return;
         System.out.print(node.data + " ");
         printPreorderHelper(node.children.get(0));
         printPreorderHelper(node.children.get(1));
+    }
+
+    /**
+     * Serialize a tree by preorder traversal and writing nodes to a file.
+     *
+     * @param fileOutputStream
+     * @throws IOException
+     */
+    public void serializeTree(FileOutputStream fileOutputStream) throws IOException {
+        serializeTreeHelper(root, fileOutputStream);
+        fileOutputStream.flush();
+        fileOutputStream.close();
+    }
+
+    private void serializeTreeHelper(Node node, FileOutputStream fileOutputStream) throws IOException {
+        if (node == null)
+            return;
+        String nodeData = node.data + " ";
+        fileOutputStream.write(nodeData.getBytes());
+        serializeTreeHelper(node.children.get(0), fileOutputStream);
+        serializeTreeHelper(node.children.get(1), fileOutputStream);
+    }
+
+//    public static void main(String args[]) { // test
+//        int[] encrypted = encrypt(value, keyval);
+//        for (int i = 0; i < encrypted.length; i++)
+//            System.out.printf("%d,", encrypted[i]);
+//        System.out.println("");
+//        System.out.println(decrypt(encrypted, keyval));
+//    }
+
+    private static int[] encrypt(String str, String key) {
+        int[] output = new int[str.length()];
+        for (int i = 0; i < str.length(); i++) {
+            int o = (Integer.valueOf(str.charAt(i)) ^ Integer.valueOf(key.charAt(i % (key.length() - 1)))) + '0';
+            output[i] = o;
+        }
+        return output;
+    }
+
+    private static int[] string2Arr(String str) {
+        String[] sarr = str.split(",");
+        int[] out = new int[sarr.length];
+        for (int i = 0; i < out.length; i++) {
+            out[i] = Integer.valueOf(sarr[i]);
+        }
+        return out;
+    }
+
+    private static String decrypt(int[] input, String key) {
+        String output = "";
+        for (int i = 0; i < input.length; i++) {
+            output += (char) ((input[i] - 48) ^ (int) key.charAt(i % (key.length() - 1)));
+        }
+        return output;
     }
 
 }

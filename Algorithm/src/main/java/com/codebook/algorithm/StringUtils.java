@@ -204,14 +204,5 @@ public class StringUtils {
         }
 
         return false;
-//        while(index < orginalString.length) {
-//            if (orginalString.charAt(idex) == substring.charAt(0)) {
-//                if (substring.length == 1) return true;
-//                for (int i = 1; i < substring.length; i++){
-//                    index2 = index + i;
-//                    if
-//                }
-//            }
-//        }
     }
 }
