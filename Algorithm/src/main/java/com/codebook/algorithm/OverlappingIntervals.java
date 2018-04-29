@@ -27,7 +27,7 @@ public class OverlappingIntervals {
 
         LinkedList<Interval> merged = new LinkedList<>();
         for (Interval interval : intervals) {
-            // if the list of merged intervals is empty or if the current interval does not overlap with the previous, simply append it.
+            // if the list of merged intervals is empty or if the current scheduling does not overlap with the previous, simply append it.
             if (merged.isEmpty() || merged.getLast().end < interval.start) {
                 merged.add(interval);
             }
